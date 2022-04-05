@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+
 /**
  * create a class name as Contacts
  */
@@ -14,6 +15,29 @@ class Contacts {
     private String firstName, lastName, address, city, state, email;
     private int zip;
     private long phoneNumber;
+
+    /**
+     * create a parameterized constructor
+     * @param firstName in address book
+     * @param lastName in address book
+     * @param address in address book
+     * @param city in address book
+     * @param state in address book
+     * @param zip in address book
+     * @param phoneNumber in address book
+     * @param email in address book
+     */
+    public Contacts (String firstName, String lastName, String address, String city, String state, int zip,
+                     Long phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
     /**
      * Used getter and setter to set and get the value.
      * Setter is used to set the value
