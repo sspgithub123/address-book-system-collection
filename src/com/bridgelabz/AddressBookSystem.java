@@ -7,19 +7,6 @@ package com.bridgelabz;
  * */
 /**
  /**
- * UC1 :- Ability to create a Contacts in Address Book with first and last names, address,
- *        city, state, zip, phone number and email...
- * UC2 :- Ability to add a new Contact to Address Book
- * UC3 :- Ability to edit existing contact person using their name
- * UC4 :- Ability to delete a person using person's name
- * UC5 :- Ability to add multiple person to Address Book
- * UC6 :- Refactor to add multiple Address Book to the System Each Address Book has a unique Name
- * UC7 :- Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
- * UC8 :- Ability to search Person in a City or State across the multiple AddressBook
- * UC9 :- Ability to view Persons by City or State
- */
-
-/**
  * import arraylist class
  * import list class
  * import scanner class
@@ -429,6 +416,58 @@ public class AddressBookSystem {
                 return;
             default:
                 System.out.println("INVALID CHOICE!");
+        }
+    }
+
+    /**
+     * create a method name as countByOption
+     * this method to count element by option
+     */
+    public void countByOption() {
+        /**
+         * create a scanner class object
+         */
+        Scanner sc = new Scanner(System.in);
+        /**
+         * display all this options
+         */
+        System.out.println("1. Count City ");
+        System.out.println("2. Count State");
+        System.out.println("3. Back ");
+        /**
+         * choice ur option what u want
+         */
+        System.out.println("Enter Your Choice : ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        /**
+         * using switch case
+         */
+        switch (choice) {
+            case 1:
+                /**
+                 * Map<String, Long>  countCity  – this is the output result
+                 * Map that will store the grouped elements as keys and count their occurrences as values,
+                 * contactList.stream() – we convert the contactlist elements into Java stream to
+                 * process the collection in a declarative way
+                 * Collectors.groupingBy() – this is the method of Collectors class to
+                 * group objects by some property and store results in a Map instance
+                 * Collectors.counting() – this Collectors class method counts the number
+                 * of elements passed in the stream as a parameter
+                 */
+                Map<String, Long> countCity = contactList.stream()
+                        .collect(Collectors.groupingBy(e -> e.getCity(), Collectors.counting()));
+                System.out.println(countCity + "\n");
+                break;
+            case 2:
+                Map<String, Long> countState = contactList.stream()
+                        .collect(Collectors.groupingBy(e -> e.getState(), Collectors.counting()));
+                System.out.println(countState + "\n");
+                break;
+            case 3:
+                return;
+            default:
+                System.out.println("Invalid Option");
         }
     }
 }
