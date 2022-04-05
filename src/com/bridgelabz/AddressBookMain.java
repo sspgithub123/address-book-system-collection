@@ -11,12 +11,17 @@ package com.bridgelabz;
  * UC8 :- Ability to search Person in a City or State across the multiple AddressBook
  * UC9 :- Ability to view Persons by City or State
  * UC10 :- Ability to get number of contact persons i.e. count by City or State
+ * UC11 :- Ability to sort the entries in the address book alphabetically by Person’s name
  */
 
 /**
  * import class
  */
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 /**
  * create a class name as AddressBookMain
@@ -47,12 +52,11 @@ public class AddressBookMain {
              */
             System.out.println("\nWelcome to Address Book System");
 
-            System.out.println("1. New Address Book \n2. Select Address Book \n3. Delete Address Book" +
-                            " \n4. Search Contact Data \n5.View Contact Data \n6.Count Contacts \n7. Exit");
-                    /**
-                     * choose the option what u want
-                     */
-                    System.out.print("Enter Your choice: ");
+            System.out.println("1. New Address Book \n2. Select Address Book \n3. Delete Address Book \n4. Search Contact Data \n5.View Contact Data \n6.Count Contacts \n7. Exit");
+            /**
+             * choose the option what u want
+             */
+            System.out.print("Enter Your choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
             /**
@@ -108,7 +112,7 @@ public class AddressBookMain {
                     addressBook.viewByOption(addressBookMap);
                     break;
                 case 6:
-                    System.out.println("Welcome to the couter");
+                    System.out.println("Welcome to the counter");
                     addressBook.countByOption();
                     break;
                 case 7:
@@ -117,6 +121,7 @@ public class AddressBookMain {
                      */
                     sc.close();
                     return;
+
                 default:
                     System.out.println("You Entered Invalid Choice....!");
                     break;
