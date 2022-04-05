@@ -6,11 +6,13 @@ package com.bridgelabz;
  * @since : 04/04/2022
  * */
 /**
+ /**
  * UC1 :- Ability to create a Contacts in Address Book with first and last names, address,
  *        city, state, zip, phone number and email...
  * UC2 :- Ability to add a new Contact to Address Book
  * UC3 :- Ability to edit existing contact person using their name
  * UC4 :- Ability to delete a person using person's name
+ * UC5 :- Ability to add multiple person to Address Book
  *
  */
 
@@ -66,6 +68,14 @@ public class AddressBookSystem{
         arrayDetails.add(info);
 //        sc.close();
     }
+    /**
+     *This method is used to edit the details in address book
+     */
+
+    public void display(){
+        System.out.println(arrayDetails);
+    }
+
     /**
      * create a method name as editDetails.
      * This method is used to edit the details in address book
@@ -182,24 +192,28 @@ public class AddressBookSystem{
          */
         AddressBookSystem details = new AddressBookSystem();
         /**
-         * calling method to object name . method name
-         * object name.method name;
-         * object=details
-         * method=addDetails(),display()
+         * declaration of variable
          */
-        details.addDetails();
-
-        int i = 0;
-        while (i == 0) {
+        int  input;
+        int ans;
+        /**
+         * create scanner class object
+         */
+        Scanner scanner = new Scanner(System.in);
+        /**
+         * using do while loop
+         */
+        do {
             /**
-             * 1st print the welcome msg.
+             * 1st print welcome msg
              */
             System.out.println("Welcome to Address Book Program");
             System.out.println("What do you want to do: ");
             System.out.println("1.Add details.\n2.Edit details.\n3.Delete Details.");
             int choose = sc.nextInt();
             /**
-             * calling method in switch case
+             * switch case is used
+             * calling the method in switch case
              */
             switch (choose) {
                 case 1:
@@ -212,11 +226,18 @@ public class AddressBookSystem{
                     details.deleteDetails();
                     break;
                 default:
-                    i = 1;
-                    System.out.println("Wrong option");
+                    System.out.println("Invalid! option");
                     break;
             }
-        }
-
+            /**
+             * in switch case got the condition then break the statement and get the user input
+             *
+             */
+            System.out.println("Do you want to continue?(0/1)");
+            ans=scanner.nextInt();
+            /**
+             * if while condition is true then update in do conditions.
+             */
+        }while(ans==1);
     }
 }
