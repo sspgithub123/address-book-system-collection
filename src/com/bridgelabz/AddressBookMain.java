@@ -12,6 +12,8 @@ package com.bridgelabz;
  * UC9 :- Ability to view Persons by City or State
  * UC10 :- Ability to get number of contact persons i.e. count by City or State
  * UC11 :- Ability to sort the entries in the address book alphabetically by Person’s name
+ * UC12 :- Ability to sort the entries in the address book by City,State, or Zip
+ *
  */
 
 /**
@@ -22,6 +24,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
 
 /**
  * create a class name as AddressBookMain
@@ -116,12 +119,14 @@ public class AddressBookMain {
                     addressBook.countByOption();
                     break;
                 case 7:
+                    System.out.println("Welcome to the sorting data alphabetically");
+                    addressBook.sortByOption();
+                case 8:
                     /**
                      * closing the scanner
                      */
                     sc.close();
                     return;
-
                 default:
                     System.out.println("You Entered Invalid Choice....!");
                     break;
