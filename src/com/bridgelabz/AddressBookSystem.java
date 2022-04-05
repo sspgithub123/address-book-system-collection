@@ -16,16 +16,18 @@ package com.bridgelabz;
  * UC6 :- Refactor to add multiple Address Book to the System Each Address Book has a unique Name
  * UC7 :- Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
  * UC8 :- Ability to search Person in a City or State across the multiple AddressBook
+ * UC9 :- Ability to view Persons by City or State
  */
 
 /**
- * import scanner class and arraylist class, collectors and list
+ * import arraylist class
+ * import list class
+ * import scanner class
+ * import collectors class
  */
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
+
 /**
  * create a class name as AddressBookSystem
  */
@@ -37,9 +39,24 @@ public class AddressBookSystem {
     public ArrayList<Contacts> contactList = new ArrayList<>();
 
     /**
+     * create a object for map,object name is nameHashMap
+     * store persons name in this object
+     */
+    public static Map<String, Contacts> nameHashMap = new HashMap<String, Contacts>();
+    /**
+     * create a object for map,object name is nameHashMap
+     * store the city of person in this object
+     */
+    public static Map<String, Contacts> cityHashMap = new HashMap<String, Contacts>();
+    /**
+     * create a object for map,object name is StateHashMap
+     * store the State of person in this object
+     */
+    public static Map<String, Contacts> stateHashMap = new HashMap<String, Contacts>();
+
+    /**
      * create a method name as addContact,this is parameterized method
      * this method is boolean type that means their output is true or false
-     *
      * @param contact in contactlist
      * @return true
      */
@@ -54,7 +71,6 @@ public class AddressBookSystem {
 
     /**
      * create a method name as searchByName this is parametrized method
-     *
      * @param name of person in contactlist
      * @return search name
      */
@@ -69,7 +85,6 @@ public class AddressBookSystem {
 
     /**
      * create a method name as searchByCity in this method we search the pesron is their city name
-     *
      * @param city person
      * @return person
      */
@@ -80,7 +95,6 @@ public class AddressBookSystem {
 
     /**
      * create a method name as searchByState in this method we search the person is their State name
-     *
      * @param state person
      * @return person
      */
@@ -90,10 +104,25 @@ public class AddressBookSystem {
     }
 
     /**
+     * Method to view person
+     * @param nameHashMap
+     */
+    public static void viewByName(Map<String, Contacts> nameHashMap) {
+        nameHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    public static void viewByCity(Map<String, Contacts> cityHashMap) {
+        cityHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    public static void viewByState(Map<String, Contacts> stateHashMap) {
+        stateHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    /**
      * create a method name as editContact this is parameterized method
-     *
      * @param current details
-     * @param edit    edit the what u want
+     * @param edit edit the what u want
      * @return editing new data
      */
     public boolean editContact(Contacts current, Contacts edit) {
@@ -118,7 +147,6 @@ public class AddressBookSystem {
 
     /**
      * create a method for delete contact, this is parameterized method
-     *
      * @param contacts in contactlist
      * @return delete contact
      */
@@ -132,7 +160,6 @@ public class AddressBookSystem {
 
     /**
      * for showing output details
-     *
      * @return result
      */
     @Override
@@ -156,8 +183,7 @@ public class AddressBookSystem {
     /**
      * create a method name as readContact
      * method for adding details
-     *
-     * @return firstName, lastName, email, phoneNumber, City, Address, Zip, State
+     * @return firstName,lastName,email,phoneNumber,City,Address,Zip,State
      */
     public static Contacts readContact() {
         /**
@@ -216,7 +242,6 @@ public class AddressBookSystem {
     /**
      * create a method name as addressBookOptions
      * method for show option for contacts
-     *
      * @param addressBook show contacts
      */
     public static void addressBookOptions(AddressBookSystem addressBook) {
@@ -315,6 +340,7 @@ public class AddressBookSystem {
             }
         }
     }
+
     /**
      * create a method name as searchByOptions
      */
@@ -355,6 +381,49 @@ public class AddressBookSystem {
                 System.out.println("Enter state: ");
                 String state = sc.nextLine();
                 contactList.forEach(book -> searchByState(state).forEach(System.out::println));
+                break;
+            case 4:
+                return;
+            default:
+                System.out.println("INVALID CHOICE!");
+        }
+    }
+
+    /**
+     * create a method name as viewByOption this is parameterized method.
+     * this method for view element by option
+     * @param addressBookMap
+     */
+    public static void viewByOption(Map<String, AddressBookSystem> addressBookMap) {
+        /**
+         * create a object for scanner class
+         */
+        Scanner sc = new Scanner(System.in);
+        /**
+         * show this option
+         */
+        System.out.println("1. View By name");
+        System.out.println("2. View By city");
+        System.out.println("3. View By state");
+        System.out.println("4. Back");
+        /**
+         * enter ur choice what u want
+         */
+        System.out.print("Enter Your choice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        /**
+         * using switch case
+         */
+        switch (choice) {
+            case 1:
+                viewByName(nameHashMap);
+                break;
+            case 2:
+                viewByCity(cityHashMap);
+                break;
+            case 3:
+                viewByState(stateHashMap);
                 break;
             case 4:
                 return;
