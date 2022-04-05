@@ -10,6 +10,8 @@ package com.bridgelabz;
  *        city, state, zip, phone number and email...
  * UC2 :- Ability to add a new Contact to Address Book
  * UC3 :- Ability to edit existing contact person using their name
+ * UC4 :- Ability to delete a person using person's name
+ *
  */
 
 /**
@@ -89,7 +91,7 @@ public class AddressBookSystem{
                 System.out.println("Select form below to change: ");
                 System.out.println("\n1.First Name\n2.Last Name\n3.Address\n4.city\n5.State\n6.Zip\n7.Mobile number\n8.Email");
                 int edit = sc.nextInt();
-                sc.close();
+                // sc.close();
 
                 /**
                  * switch case is used for what u want edit
@@ -140,6 +142,34 @@ public class AddressBookSystem{
         }
 
     }
+    /**
+     * create a method name as deleteDetails
+     * This method is used to delete the contact details
+     */
+    public void deleteDetails() {
+        System.out.println("Confirm the first name of the person to delete contact");
+        //user input
+        String confirmName = sc.next();
+        /**
+         * using for loop
+         * 1) 1st initialize the value of a variable,then check the condition,then go to if condition,in this condition arrayDetails object
+         *   the element at the specified position check in object then check they are equal or not if condtion is true then delete the element
+         *   in arrayDetails
+         */
+        for (int i = 0; i < arrayDetails.size(); i++) {
+
+            if (arrayDetails.get(i).getFirstName().equals(confirmName)) {
+                arrayDetails.remove(i);
+                System.out.println("List After removing"+arrayDetails);
+
+                /**
+                 * if condition is false then print enter valid first name
+                 */
+            } else {
+                System.out.println("Enter valid first name");
+            }
+        }
+    }
 
     /**
      * create a main method all program execute in main method
@@ -166,14 +196,20 @@ public class AddressBookSystem{
              */
             System.out.println("Welcome to Address Book Program");
             System.out.println("What do you want to do: ");
-            System.out.println("1.Add details.\n2.Edit details.");
+            System.out.println("1.Add details.\n2.Edit details.\n3.Delete Details.");
             int choose = sc.nextInt();
+            /**
+             * calling method in switch case
+             */
             switch (choose) {
                 case 1:
                     details.addDetails();
                     break;
                 case 2:
                     details.editDetails();
+                    break;
+                case 3:
+                    details.deleteDetails();
                     break;
                 default:
                     i = 1;
