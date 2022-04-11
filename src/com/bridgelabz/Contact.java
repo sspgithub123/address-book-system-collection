@@ -4,7 +4,7 @@ package com.bridgelabz;
 /**
  * create a class name as Contacts
  */
-class Contacts {
+class Contact {
     /**
      * private variables can only be accessed within the same class (an outside class has no access to it)
      * private = restricted access
@@ -27,8 +27,8 @@ class Contacts {
      * @param phoneNumber in address book
      * @param email in address book
      */
-    public Contacts (String firstName, String lastName, String address, String city, String state, int zip,
-                     Long phoneNumber, String email) {
+    public Contact(String firstName, String lastName, String address, String city, String state, int zip,
+                   Long phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

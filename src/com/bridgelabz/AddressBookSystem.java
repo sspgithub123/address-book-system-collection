@@ -1,10 +1,9 @@
 package com.bridgelabz;
 /**
- * Program on User Registration Using Regex
- *
- * @author : Shubham Pawar
- * @since : 04/04/2022
- * */
+ * import all class in java util package
+ * import collectors class
+ * import function class
+ */
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,25 +17,31 @@ public class AddressBookSystem {
      * create a arraylist object name as contactList
      * Store the person all details in object
      */
-    public static ArrayList<Contacts> contactList = new ArrayList<>();
+    public static ArrayList<Contact> contactList = new ArrayList<>();
 
     /**
      * create a object for map,object name is nameHashMap
      * store persons name in this object
      */
-    public static Map<String, Contacts> nameHashMap = new HashMap<String, Contacts>();
+    public static Map<String, Contact> nameHashMap = new HashMap<String, Contact>();
     /**
      * create a object for map,object name is nameHashMap
      * store the city of person in this object
      */
-    public static Map<String, Contacts> cityHashMap = new HashMap<String, Contacts>();
+    public static Map<String, Contact> cityHashMap = new HashMap<String, Contact>();
     /**
      * create a object for map,object name is StateHashMap
      * store the State of person in this object
      */
-    public static Map<String, Contacts> stateHashMap = new HashMap<String, Contacts>();
-
+    public static Map<String, Contact> stateHashMap = new HashMap<String, Contact>();
+    /**
+     *  creating scanner class object
+     *  scanner class used to taking input form user
+     */
     static Scanner sc = new Scanner(System.in);
+    /**
+     * creating an object for AddressBookSystem class object name as addressBook
+     */
     static AddressBookSystem addressBook = new AddressBookSystem();
 
     /**
@@ -45,9 +50,9 @@ public class AddressBookSystem {
      * @param contact in contactlist
      * @return true
      */
-    public boolean addContact(Contacts contact) {
-        List<Contacts> checkByName = searchByName(contact.getFirstName());
-        for (Contacts equalName : checkByName)
+    public boolean addContact(Contact contact) {
+        List<Contact> checkByName = searchByName(contact.getFirstName());
+        for (Contact equalName : checkByName)
             if (equalName.equals(contact))
                 return false;
         contactList.add(contact);
@@ -59,7 +64,7 @@ public class AddressBookSystem {
      * @param name of person in contactlist
      * @return search name
      */
-    public List<Contacts> searchByName(String name) {
+    public List<Contact> searchByName(String name) {
         /**
          * collection list of element
          * stream and lambda for find filter given name from arraylist
@@ -73,7 +78,11 @@ public class AddressBookSystem {
      * @param city person
      * @return person
      */
-    public List<Contacts> searchByCity(String city) {
+    public List<Contact> searchByCity(String city) {
+        /**
+         * collection list of element
+         * stream and lambda for find filter given city from arraylist
+         */
         return contactList.stream().filter(person -> person.getCity().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
     }
@@ -83,39 +92,64 @@ public class AddressBookSystem {
      * @param state person
      * @return person
      */
-    public List<Contacts> searchByState(String state) {
+    public List<Contact> searchByState(String state) {
+        /**
+         * collection list of element
+         * stream and lambda for find filter given State from arraylist
+         */
         return contactList.stream().filter(person -> person.getState().equalsIgnoreCase(state))
                 .collect(Collectors.toList());
     }
 
     /**
-     * Method to view person
-     * @param nameHashMap
+     * Method to view person by name
+     * @param nameHashMap persons name
      */
-    public static void viewByName(Map<String, Contacts> nameHashMap) {
+    public static void viewByName(Map<String, Contact> nameHashMap) {
         nameHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
     }
 
-    public static void viewByCity(Map<String, Contacts> cityHashMap) {
+    /**
+     * Method to view person by city
+     * @param cityHashMap persons city
+     */
+    public static void viewByCity(Map<String, Contact> cityHashMap) {
         cityHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
     }
 
-    public static void viewByState(Map<String, Contacts> stateHashMap) {
+    /**
+     * Method to view person by state
+     * @param stateHashMap persons state
+     */
+    public static void viewByState(Map<String, Contact> stateHashMap) {
         stateHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
     }
 
     /**
-     *
      * creating sortby method for sorting the data
      */
-    public static List<Contacts> sortBy(Function<? super Contacts, ? extends String> key) {
+    public static List<Contact> sortBy(Function<? super Contact, ? extends String> key) {
+        /**
+         * in contactList sorted the data and comapring with key and collect to the previous result in list
+         */
         return contactList.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
     }
-
-    public static List<Contacts> sortByZip(Function<? super Contacts, ? extends Long> key) {
+    /**
+     * creating sortbyZip method for sorting the data by perons zip code
+     */
+    public static List<Contact> sortByZip(Function<? super Contact, ? extends Long> key) {
+        /**
+         * in contactList sorted the data and comapring with key and collect to the previous result in list
+         */
         return contactList.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
     }
-    public static List<Contacts> sortByName(Function<? super Contacts, ? extends String> key) {
+    /**
+     * creating sortByName method for sorting the data by perons Name
+     */
+    public static List<Contact> sortByName(Function<? super Contact, ? extends String> key) {
+        /**
+         * in contactList sorted the data and comapring with key and collect to the previous result in list
+         */
         return contactList.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
     }
 
@@ -125,7 +159,7 @@ public class AddressBookSystem {
      * @param edit edit the what u want
      * @return editing new data
      */
-    public boolean editContact(Contacts current, Contacts edit) {
+    public boolean editContact(Contact current, Contact edit) {
         /**
          * if condition is true then return false
          */
@@ -150,7 +184,7 @@ public class AddressBookSystem {
      * @param contacts in contactlist
      * @return delete contact
      */
-    public boolean deleteContact(Contacts contacts) {
+    public boolean deleteContact(Contact contacts) {
         /**
          * delete the contact in contactList
          */
@@ -185,7 +219,7 @@ public class AddressBookSystem {
      * method for adding details
      * @return firstName,lastName,email,phoneNumber,City,Address,Zip,State
      */
-    public static Contacts readContact() {
+    public static Contact readContact() {
         /**
          * create a scanner class object
          * scanner is used for geeting input from user
@@ -236,7 +270,7 @@ public class AddressBookSystem {
         /**
          * return new contacts
          */
-        return new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+        return new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
     }
 
     /**
@@ -268,21 +302,34 @@ public class AddressBookSystem {
                      * call addcontact with passing method readcontact
                      */
                     if (addressBook.addContact(readContact()))
+                    /**
+                     *  create a new contact check in address book this contact duplicate or not
+                     *  they are not duplicate then display this msg
+                     */
                         System.out.println("Contact Added Successfully....!");
+                    /**
+                     * if duplicate contact present in address book then print this msg
+                     */
                     else
                         System.out.println("Contact Already Exist....!");
                     break;
                 case 2:
+                    /**
+                     * if u want edit ur 1st name then enter the first name in contact
+                     */
                     System.out.println("Enter First name to edit contact: ");
                     String name = sc.nextLine();
                     /**
                      * list of equal first name
                      */
-                    List<Contacts> equalName = addressBook.searchByName(name);
+                    List<Contact> equalName = addressBook.searchByName(name);
                     /**
                      * if not match found
                      */
                     if (equalName.isEmpty())
+                    /**
+                     * match not fount then display data not found msg
+                     */
                         System.out.println("Data Not Found....!");
                     /**
                      * if only one equal match found
@@ -334,6 +381,9 @@ public class AddressBookSystem {
                     break;
                 case 5:
                     return;
+                /**
+                 * suppose all cases are false then execute default case
+                 */
                 default:
                     System.out.println("Invalid Choice!");
                     break;
@@ -506,16 +556,16 @@ public class AddressBookSystem {
         sc.nextLine();
         switch (choice) {
             case 1:
-                AddressBookSystem.sortBy(Contacts::getFirstName).forEach(System.out::println);
+                AddressBookSystem.sortBy(Contact::getFirstName).forEach(System.out::println);
                 break;
             case 2:
-                AddressBookSystem.sortBy(Contacts::getLastName).forEach(System.out::println);
+                AddressBookSystem.sortBy(Contact::getLastName).forEach(System.out::println);
                 break;
             case 3:
-                AddressBookSystem.sortBy(Contacts::getCity).forEach(System.out::println);
+                AddressBookSystem.sortBy(Contact::getCity).forEach(System.out::println);
                 break;
             case 4:
-                AddressBookSystem.sortBy(Contacts::getState).forEach(System.out::println);
+                AddressBookSystem.sortBy(Contact::getState).forEach(System.out::println);
                 break;
             case 5:
                 return;
